@@ -1,0 +1,9 @@
+flowchart TD
+  A[ERP Legado envia JSON] --> B[API Conector PHP]
+  B --> C[Validação de Campos]
+  C --> D[Geração do XML NFSe]
+  D --> E[Assinatura Digital - Certificado A1]
+  E --> F[Envio SOAP à Prefeitura de SP]
+  F --> G[Resposta XML / Protocolo]
+  G --> H[Atualização do Banco - status, XML]
+  H --> I[Consulta ou Sincronização Manual/Automática]

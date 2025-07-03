@@ -1,0 +1,74 @@
+🧮 5. Estrutura de Dados – Prisma ORM
+Modelo NotaFiscal
+prisma
+Copiar
+Editar
+model NotaFiscal {
+  id                   Int       @id @default(autoincrement())
+  numeroRps            Int
+  serieRps             String
+  numeroNfse           Int?
+  cnpjPrestador        String
+  imPrestador          String
+  razaoSocialPrestador String
+  enderecoPrestador    Json
+  cnpjTomador          String
+  razaoSocialTomador   String
+  inscricaoMunicipalTomador String?
+  emailTomador         String
+  enderecoTomador      Json
+  descricaoServico     String
+  codigoServico        String
+  valorServico         Float
+  valorIss             Float
+  aliquotaIss          Float
+  regimeTributario     RegimeTributario
+  discriminacao        String
+  localPrestacao       String
+  dataEmissao          DateTime
+  xmlGerado            Text?
+  xmlResposta          Text?
+  protocolo            String?
+  statusEnvio          StatusEnvio
+  mensagemErro         String?
+  dataEnvio            DateTime?
+  dataResposta         DateTime?
+  criadoEm             DateTime  @default(now())
+  atualizadoEm         DateTime  @updatedAt
+  loteId               Int?
+  lote                 LoteNotaFiscal? @relation(fields: [loteId], references: [id])
+}
+Modelo LoteNotaFiscal
+prisma
+Copiar
+Editar
+model LoteNotaFiscal {
+  id             Int        @id @default(autoincrement())
+  identificador  String     @unique
+  status         StatusEnvio
+  xmlLote        Text?
+  protocolo      String?
+  mensagemErro   String?
+  dataEnvio      DateTime?
+  dataResposta   DateTime?
+  criadoEm       DateTime   @default(now())
+  atualizadoEm   DateTime   @updatedAt
+  notas          NotaFiscal[]
+}
+Enums
+prisma
+Copiar
+Editar
+enum StatusEnvio {
+  PENDENTE
+  ENVIADO
+  AUTORIZADO
+  REJEITADO
+  ERRO
+}
+
+enum RegimeTributario {
+  SIMPLES_NACIONAL
+  LUCRO_PRESUMIDO
+  LUCRO_REAL
+}

@@ -1,0 +1,49 @@
+📄 Product Requirements Document (PRD)
+Projeto: Conector de Nota Fiscal Eletrônica de Serviço (NFS-e) – Prefeitura de São Paulo
+Versão: 1.1
+Data: 02/07/2025
+Responsável: [Seu Nome ou Equipe]
+
+🧭 1. Visão Geral
+Este projeto visa criar um conector em PHP (CodeIgniter 3) que receba dados de faturamento de um sistema ERP legado e gere Notas Fiscais de Serviço Eletrônicas (NFS-e) para clientes 100% pessoas jurídicas (CNPJ), utilizando o padrão exigido pela Prefeitura de São Paulo e a biblioteca open source NFePHP/sped-nfse.
+
+🎯 2. Objetivos
+Automatizar o processo de geração, envio e controle de NFS-e para empresas.
+
+Reduzir erros manuais e garantir conformidade legal com o layout da Prefeitura de São Paulo.
+
+Rastrear o status de cada nota e lote de forma transparente e persistente.
+
+Utilizar tecnologias modernas e de código aberto: PHP 7, CodeIgniter 3, Prisma ORM, MySQL e NFePHP.
+
+🧱 3. Escopo
+Incluso no escopo:
+Endpoint interno RESTful para recepção dos dados da nota.
+
+Validação de dados obrigatórios (somente CNPJ).
+
+Geração e assinatura de XML (padrão ABRASF/Paulistana).
+
+Envio de XML via WebService SOAP para a Prefeitura de SP.
+
+Armazenamento completo dos dados da nota, status de envio e resposta.
+
+Suporte a envio individual e em lote.
+
+Fora do escopo:
+Integração com múltiplas prefeituras.
+
+Emissão para pessoas físicas (CPF).
+
+Interface administrativa ou painel visual (neste MVP).
+
+🧩 4. Funcionalidades
+Funcionalidade	Descrição
+Recepção de dados (API)	Recebe dados da nota fiscal via JSON com autenticação por token.
+Validação dos dados	Verifica se todos os campos obrigatórios estão presentes e consistentes.
+Geração e assinatura XML	Usa o NFePHP para montar o XML e assinar com o certificado digital A1 (.pfx).
+Envio ao WebService SP	Envia a nota para a Prefeitura de SP via SOAP.
+Registro de status	Armazena status: pendente, enviado, autorizado, rejeitado ou erro.
+Armazenamento de XMLs	XML enviado e resposta armazenados no banco para auditoria.
+Envio em lote (opcional)	Envio de múltiplas NFS-e em um mesmo lote, com protocolo.
+Consulta e sincronismo	Consulta status de notas por número ou protocolo e atualiza estado no banco.

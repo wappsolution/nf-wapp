@@ -1,0 +1,61 @@
+# ⚠️ Segurança: não versionar configs sensíveis
+application/config/config.php
+application/config/database.php
+.env
+*.env
+
+# ⚠️ Não versionar certificados digitais
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Cache do CodeIgniter
+application/cache/*
+!application/cache/index.html
+
+# Logs do CodeIgniter
+application/logs/*
+!application/logs/index.html
+
+# .htaccess (protegidos)
+!application/*/.htaccess
+
+# Vendors gerenciados pelo Composer
+/vendor/
+composer.lock
+
+# Banco de dados de testes
+tests/mocks/database/ci_test.sqlite
+
+# Diretórios de build
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+*.bak
+*.log
+*.swp
+
+# IDEs
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+/nbproject/
+
+# Arquivos de cache do Sublime
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Pastas de testes (se gerarem arquivos dinâmicos)
+tests/tests/
+tests/results/
+
+#Pasta de referencias
+docs
